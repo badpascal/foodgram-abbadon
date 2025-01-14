@@ -2,7 +2,7 @@ version: '3.3'
 services:
 
   frontend:
-    image: abbadon666666/foodgram_frontend:latest
+    image: badpascal/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
   db:
@@ -12,7 +12,7 @@ services:
     env_file:
       - ./.env
   backend:
-    image: abbadon666666/foodgram_backend:latest
+    image: badpascal/foodgram_backend:latest
     restart: always
     volumes:
       - static_value:/app_back/static/
