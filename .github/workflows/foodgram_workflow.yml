@@ -42,7 +42,7 @@ jobs:
       with:
         context: backend/
         push: true
-        tags: abbadon666666/foodgram_backend:latest
+        tags: badpascal/foodgram_backend:latest
   
   deploy:
     name: Deploy MyServer
@@ -63,7 +63,7 @@ jobs:
           cd foodgram/infra/
           sudo docker-compose stop
           echo y|sudo docker-compose rm backend
-          sudo docker rmi abbadon666666/foodgram_backend
+          sudo docker rmi badpascal/foodgram_backend
           touch .env
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
@@ -73,15 +73,3 @@ jobs:
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
           sudo docker-compose up -d
-  
-  send_message:
-    name: Telegram - Send message
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-    - name: send message
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} успешно выполнен!
